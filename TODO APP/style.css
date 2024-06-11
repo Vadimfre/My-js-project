@@ -425,13 +425,16 @@
   th {
     padding: 0;
   }
+  
  .container{
     padding: 50px 0px 0px 50px ;
  }
+
  .main{
   display: flex;
   justify-content: center;
  }
+
  .hidden {
   visibility: hidden;
   position: absolute;
@@ -442,6 +445,7 @@
     color: #FFFFFF;
     font-family: "Anton";
  }
+
  .main__stats{
     width: 590px;
     height: 250px;
@@ -461,11 +465,13 @@
     padding-bottom: 20px;
     font-family: "Anton";
  }
+
  .stats__description{
     font-size: 20px;
     color: #7E7466;
     font-family: "Anton";
  }
+
  .stats__ellipse{
     height: 180px;
     width: 180px;
@@ -475,11 +481,13 @@
     justify-content: center;
     align-items: center;
  }
+
  .task{
     color: #0D0D0D;
     font-size:50px ;
     font-family: "Anton";
  }
+
  .main__add__button{
   background: rgb(150, 62, 4);
   width: 170px;
@@ -488,6 +496,7 @@
   border: none;
   transition: 0.2s;
  }
+
  .main__add__button:hover{
   background: rgb(235, 96, 4);
  }
@@ -504,6 +513,7 @@
   font-size: 22px;
   font-family: "Anton";
  }
+
 .main__add__task{
   display: flex;
   align-items: center;
@@ -560,12 +570,14 @@
   font-family: "Anton";
   /* text-decoration: line-through; */
 }
+
 .main__task{
   margin-bottom: 20px;
   display: flex;
   align-items: center;
   gap: 20px;
 }
+
 .button__task__edit{
   background: rgb(150, 62, 4);
   height: 75px;
@@ -573,9 +585,11 @@
   border-radius: 20px;
   border: none;
 }
+
 .button__task__edit:hover{
   background:  rgb(235, 96, 4);
 }
+
 .button__tasl__delete{
   background: rgb(150, 62, 4);
   height: 75px;
@@ -583,6 +597,7 @@
   border-radius: 20px;
   border: none;
 }
+
 .button__tasl__delete:hover{
   background:  rgb(235, 96, 4);
 }
@@ -592,6 +607,7 @@
   border: none;
   background: none;
 }
+
 .finished__task__tab{
   width: 185px;
   height: 45px;
@@ -608,6 +624,7 @@
   padding-left: 20px;
   transition: 0.4s;
 }
+
 .unfinished__task__tab{
   width: 185px;
   height: 45px;
@@ -630,10 +647,12 @@ display: flex;
 flex-direction: column;
 gap:20px ;
 }
+
 .finished__task__tab:hover{
   border: none;
   background: rgb(17, 163, 49);
 }
+
 .unfinished__task__tab:hover{
   border: none;
   background: rgb(165, 39, 22);
