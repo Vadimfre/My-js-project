@@ -1,26 +1,35 @@
-// Получаем элементы
-const searchButton = document.querySelector(".search-form__btn");
-const searchInput = document.querySelector(".search-form__txt");
-const temperatureElement = document.querySelector(".temperature");
-const weatherElement = document.querySelector(".weather");
-const locationElement = document.querySelector(".location");
-const humidityElement = document.querySelector(".humidity");
-const windElement = document.querySelector(".wind");
-const pressureElement = document.querySelector(".pressure");
-const weatherIconElement = document.getElementById("weatherIcon");
+const searchForm = document.querySelector(".search-form")
+const descriptionWeather = document.querySelector('.description')
+const searchButton = searchForm.querySelector(".search-form__btn");
+const searchInput = searchForm.querySelector(".search-form__txt");
+const temperatureElement = descriptionWeather.querySelector(".temperature");
+const weatherElement = descriptionWeather.querySelector(".weather");
+const locationElement = descriptionWeather.querySelector(".location");
+const humidityElement = descriptionWeather.querySelector(".humidity");
+const windElement = descriptionWeather.querySelector(".wind");
+const pressureElement = descriptionWeather.querySelector(".pressure");
+const weatherIconElement = document.querySelector("#weatherIcon");
 
-searchButton.addEventListener("click", fetchWeather);
+const startCityValue = 'Hrodno'
 
-async function fetchWeather(event) {
-    event.preventDefault();
-    const city = searchInput.value || "Hrodno"; 
-    const url = `https://api.weatherbit.io/v2.0/current?city=${city}&key=4abf0403d3184196b749814d88fdc4be`;
+async function onSearchButtonClick(evt) {
+    evt.preventDefault();
+    const city = searchInput.value;
+    const data = await fetchWeather(city);
+    updateWeather(data);
+}
+
+searchButton.addEventListener("click", onSearchButtonClick);
+
+async function fetchWeather(city) {
+    
+    const cityName = city || startCityValue; 
+    const url = `https://api.weatherbit.io/v2.0/current?city=${cityName}&key=4abf0403d3184196b749814d88fdc4be`;
 
     try {
         const response = await fetch(url);
         const data = await response.json();
-        updateWeather(data);
-        console.log(data);
+        return data;
     } catch (error) {
         console.error('Error fetching weather data:', error);
     }
@@ -44,25 +53,27 @@ function updateWeather(data) {
     windElement.textContent = `Wind: ${windSpeed} m/s`;
     pressureElement.textContent = `Pressure: ${pressure} mb`;
 
-    let iconPath = "images/sun.png";
-
-    if (weatherCode >= 200 && weatherCode < 300) {
-        iconPath = "images/thunderstorm.png";
-    } else if (weatherCode >= 300 && weatherCode < 600) {
-        iconPath = "images/rain.png";
-    } else if (weatherCode >= 600 && weatherCode < 700) {
-        iconPath = "images/snow.png";
-    } else if (weatherCode >= 700 && weatherCode < 800) {
-        iconPath = "images/mist.png";
-    } else if (weatherCode === 800) {
-        iconPath = "images/sun.png";
-    } else if (weatherCode > 800) {
-        iconPath = "images/cloudy.png";
-    }
-
-    weatherIconElement.src = iconPath;
+    weatherIconElement.src = searchWeatherIcon(weatherCode);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    fetchWeather(new Event('load'));
-});
+function searchWeatherIcon(weatherCode) {
+    if (weatherCode >= 200 && weatherCode < 300) {
+        return "images/thunderstorm.png";
+    }
+    if (weatherCode >= 300 && weatherCode < 600) {
+        return "images/rain.png";
+    }
+    if (weatherCode >= 600 && weatherCode < 700) {
+        return "images/snow.png";
+    }
+    if (weatherCode >= 700 && weatherCode < 800) {
+        return "images/mist.png";
+    }
+    if (weatherCode === 800) {
+        return "images/sun.png";
+    }
+    if (weatherCode > 800) {
+        return "images/cloudy.png";
+    }
+}
+
